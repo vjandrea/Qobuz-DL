@@ -16,6 +16,8 @@ import { Toaster } from '@/components/ui/toaster';
 import { CountryProvider } from '@/lib/country-provider';
 import './globals.css';
 
+const applicationName = process.env.NEXT_PUBLIC_APPLICATION_NAME || 'Qobuz-DL';
+
 const inter = Inter({
     subsets: ['latin'],
     display: 'swap'
@@ -24,18 +26,18 @@ const inter = Inter({
 export const metadata: Metadata = {
     metadataBase: new URL('https://www.qobuz-dl.com/'), // Site URL
     title: {
-        default: process.env.NEXT_PUBLIC_APPLICATION_NAME + ' - A frontend browser client for downloading music for Qobuz.',
-        template: process.env.NEXT_PUBLIC_APPLICATION_NAME!
+        default: applicationName + ' - A frontend browser client for downloading music for Qobuz.',
+        template: applicationName
     },
     description: 'A frontend browser client for downloading music for Qobuz.',
     openGraph: {
         images:
-            process.env.NEXT_PUBLIC_APPLICATION_NAME!.toLowerCase() === 'qobuz-dl'
+            applicationName.toLowerCase() === 'qobuz-dl'
                 ? [{ url: '/logo/qobuz-banner.png', width: 650, height: 195, alt: 'Qobuz Logo' }]
                 : []
     },
     keywords: [
-        `${process.env.NEXT_PUBLIC_APPLICATION_NAME!}`,
+        applicationName,
         'music',
         'downloader',
         'hi-res',
