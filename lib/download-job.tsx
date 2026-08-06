@@ -54,7 +54,7 @@ export const createDownloadJob = async (
                     });
                     const trackURL = APIResponse.data.data.url;
                     const fileSizeResponse = await axios.head(trackURL, { signal });
-                    const fileSize = fileSizeResponse.headers['content-length'];
+                    const fileSize = Number(fileSizeResponse.headers['content-length'] ?? 0);
                     const response = await axios.get(trackURL, {
                         responseType: 'arraybuffer',
                         onDownloadProgress: (progressEvent) => {
@@ -183,7 +183,7 @@ export const createDownloadJob = async (
                                 ...statusBar,
                                 progress: (100 / albumTracks.length) * (index + 1)
                             }));
-                            const fileSize = parseInt(fileSizeResponse.headers['content-length']);
+                            const fileSize = Number(fileSizeResponse.headers['content-length'] ?? 0);
                             totalAlbumSize += fileSize;
                         }
                     }
